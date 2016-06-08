@@ -81,7 +81,22 @@ exports.delete = function(req, res) {
  * List of Categories
  */
 exports.list = function(req, res) { 
-  Category.find({'user':req.user}).sort('-created').populate('user', 'displayName').exec(function(err, categories) {
+  Category.find({ 'user':req.user }).sort('-created').populate('user', 'displayName').exec(function(err, categories) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    } else {
+      res.jsonp(categories);
+    }
+  });
+};
+
+/**
+ * List of Categories for Select options
+ */
+exports.listSelect = function(req, res) { 
+  Category.find({}, 'name', function(err, categories){
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)

@@ -6,8 +6,11 @@
 var path = require('path'),
   mongoose = require('mongoose'),
   Task = mongoose.model('Task'),
+  Category = mongoose.model('Category'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
   _ = require('lodash');
+  
+  //var Category = mongoose.model('Category');
 
 /**
  * Create a Task
@@ -37,7 +40,7 @@ exports.read = function(req, res) {
   // Add a custom field to the Article, for determining if the current User is the "owner".
   // NOTE: This field is NOT persisted to the database, since it doesn't exist in the Article model.
   task.isCurrentUserOwner = req.user && task.user && task.user._id.toString() === req.user._id.toString() ? true : false;
-
+  
   res.jsonp(task);
 };
 
@@ -81,7 +84,7 @@ exports.delete = function(req, res) {
  * List of Tasks
  */
 exports.list = function(req, res) { 
-  Task.find({'user':req.user}).sort('-created').populate('user', 'displayName').exec(function(err, tasks) {
+  Task.find({ 'user':req.user }).sort('-created').populate('user', 'displayName').exec(function(err, tasks) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)

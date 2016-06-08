@@ -29,11 +29,12 @@
         controller: 'TasksController',
         controllerAs: 'vm',
         resolve: {
-          taskResolve: newTask
+          taskResolve: newTask,
         },
         data: {
           roles: ['user', 'admin'],
-          pageTitle : 'Tasks Create'
+          pageTitle : 'Tasks Create',
+          categories:['one', 'two']
         }
       })
       .state('tasks.edit', {

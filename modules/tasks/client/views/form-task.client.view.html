@@ -5,11 +5,11 @@
   <div class="col-md-12">
     <form name="vm.form.taskForm" class="form-horizontal" ng-submit="vm.save(vm.form.taskForm.$valid)" novalidate>
       <fieldset>
+         Hello {{vm.categories}}
         <div class="form-group" show-errors>
           <label class="control-label" for="name">Name</label>
           
           <input name="name" type="text" ng-model="vm.task.name" id="name" class="form-control" placeholder="Name" required>
-          
           <select name="category" ng-model="vm.job.category" id="category" class="form-control" placeholder="Name">
             <option selected=selected>uncategorized</option>
             <option>Option1</option>

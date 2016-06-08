@@ -5,7 +5,7 @@
   <div class="col-md-12">
     <form name="vm.form.categoryForm" class="form-horizontal" ng-submit="vm.save(vm.form.categoryForm.$valid)" novalidate>
       <fieldset>
-        <div class="form-group" show-errors>
+       <div class="form-group" show-errors>
           <label class="control-label" for="name">Name</label>
           <input name="name" type="text" ng-model="vm.category.name" id="name" class="form-control" placeholder="Name" required>
           <div ng-messages="vm.form.categoryForm.name.$error" role="alert">
